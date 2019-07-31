@@ -1,7 +1,9 @@
-package com.example.sideproject2019;
+package com.example.sideproject2019.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.sideproject2019.R;
 
 public class MainActivity extends AppCompatActivity {
 
