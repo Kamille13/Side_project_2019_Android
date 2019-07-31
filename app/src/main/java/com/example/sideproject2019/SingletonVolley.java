@@ -2,6 +2,9 @@ package com.example.sideproject2019;
 
 import android.content.Context;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 public class SingletonVolley {
 
     private final static String REQUEST_URL = "http://192.168.1.17:8080";
