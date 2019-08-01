@@ -19,7 +19,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signIn);
+        setContentView(R.layout.activity_sign_in);
 
         final EditText etEmail = findViewById(R.id.etEmailSignIn);
         final EditText etPassword = findViewById(R.id.etPassWordSignIn);
@@ -51,9 +51,22 @@ public class SignInActivity extends AppCompatActivity {
                                             SignUpActivity.class);
                                     startActivity(intent);
                                 }
+                                else{
+                                    new AlertDialog.Builder(SignInActivity.this)
+                                            .setTitle("Erreur")
+                                            .setMessage("Utilisateur Introuvable")
+                                            .show();
+                                }
                             }
 
                         });
+            }
+        });
+        btSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
+                startActivity(intent);
             }
         });
 
