@@ -7,7 +7,7 @@ import com.android.volley.toolbox.Volley;
 
 public class SingletonVolley {
 
-    private final static String REQUEST_URL = "http://192.168.1.17:8080";
+    private final static String REQUEST_URL = "http://10.0.2.2:8080/";
     private static SingletonVolley instance;
     private static Context ctx;
     private RequestQueue requestQueue;
