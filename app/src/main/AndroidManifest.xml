@@ -14,16 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MapsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activity.SignUpActivity" />
         <activity android:name=".activity.SignInActivity">
 
+        </activity>
+        <activity android:name=".activity.MapsActivity">
+            <intent-filter>
+
+            </intent-filter>
         </activity>
     </application>
 
