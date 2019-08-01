@@ -41,13 +41,13 @@ public class SignUpActivity extends AppCompatActivity {
                             .setMessage("Veuillez renseigner vos informations")
                             .show();
                 }
-                User user = new User();
+                final User user = new User();
                 user.setFirstName(firstname);
                 user.setLastName(lastname);
                 user.setEmail(email);
                 user.setPassword(password);
 
-                SingletonVolley.getInstance(SignUpActivity.this).SignUp(user, new Consumer<User>() {
+                SingletonVolley.getInstance(SignUpActivity.this).createUser(user, new Consumer<User>() {
                     @Override
                     public void accept(User user) {
                         UserSingleton.getInstance().setUser(user);

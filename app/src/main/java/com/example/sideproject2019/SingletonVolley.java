@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class SingletonVolley {
 
-    private final static String REQUEST_URL = "http://localhost:8080/";
+    private final static String REQUEST_URL = "http://10.0.2.2:8080/";
     private static SingletonVolley instance;
     private static Context ctx;
     private RequestQueue requestQueue;
@@ -47,8 +47,8 @@ public class SingletonVolley {
         }
         return requestQueue;
     }
-    public void SignIn(final User user, final Consumer<User> userListener) {
-        String url = REQUEST_URL + "user/login";
+    public void login(final User user, final Consumer<User> userListener) {
+        String url = REQUEST_URL + "users/login";
         GsonBuilder gsonBuilder = new GsonBuilder();
         final Gson gson = gsonBuilder.create();
         final String requestBody = gson.toJson(user);
@@ -89,8 +89,8 @@ public class SingletonVolley {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void SignUp(final User user, final Consumer<User> userListener) {
-        String url = REQUEST_URL + "user/create";
+    public void createUser(final User user, final Consumer<User> userListener) {
+        String url = REQUEST_URL + "users/create";
         GsonBuilder gsonBuilder = new GsonBuilder();
         final Gson gson = gsonBuilder.create();
         final String requestBody = gson.toJson(user);

@@ -42,7 +42,7 @@ public class SignInActivity extends AppCompatActivity {
                 user.setPassword(password);
 
                 SingletonVolley.getInstance(SignInActivity.this)
-                        .SignIn(user, new Consumer<User>() {
+                        .login(user, new Consumer<User>() {
                             @Override
                             public void accept(User user) {
                                 UserSingleton.getInstance().setUser(user);
