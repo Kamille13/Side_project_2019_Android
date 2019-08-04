@@ -19,14 +19,18 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.TileProvider;
 
+import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.events.DelayedMapListener;
 import org.osmdroid.events.MapListener;
 import org.osmdroid.events.ScrollEvent;
 import org.osmdroid.events.ZoomEvent;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
+import org.osmdroid.views.overlay.mylocation.IMyLocationProvider;
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 public class MapsActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
@@ -132,13 +136,12 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
         mapView.setClickable(true);
         mapView.setBuiltInZoomControls(true);
         mapView.setTileSource(TileSourceFactory.MAPNIK);
-        mapView.getController().setZoom(15);
 
-       /* MyLocationNewOverlay oMapLocationOverlay = new MyLocationNewOverlay(getApplicationContext(), mapView);
-        mapView.getOverlays().add(oMapLocationOverlay);
-        oMapLocationOverlay.enableFollowLocation();
-        oMapLocationOverlay.enableMyLocation();
-        oMapLocationOverlay.enableFollowLocation();*/
+
+        IMapController mapController = mapView.getController();
+        mapController.setZoom(16);
+        GeoPoint startPoint = new GeoPoint(43.600000, 1.433333);
+        mapController.setCenter(startPoint);
 
         CompassOverlay compassOverlay = new CompassOverlay(this, mapView);
         compassOverlay.enableCompass();
