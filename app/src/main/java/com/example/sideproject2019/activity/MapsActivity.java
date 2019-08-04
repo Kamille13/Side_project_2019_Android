@@ -24,15 +24,11 @@ import org.osmdroid.events.MapListener;
 import org.osmdroid.events.ScrollEvent;
 import org.osmdroid.events.ZoomEvent;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
-import org.osmdroid.views.overlay.mylocation.IMyLocationProvider;
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 public class MapsActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-    MapController mMapController;
     GoogleApiClient mGoogleApiClient;
     MapView mapView = null;
     private static final int MULTIPLE_PERMISSION_REQUEST_CODE = 4;
@@ -136,7 +132,7 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
         mapView.setBuiltInZoomControls(true);
 
         mapView.getController().setZoom(15);
-        mapView.setTileSource(TileSourceFactory.MAPNIK);
+        mapView.setTileSource(TileSourceFactory.CLOUDMADESTANDARDTILES);
 
        /* MyLocationNewOverlay oMapLocationOverlay = new MyLocationNewOverlay(getApplicationContext(), mapView);
         mapView.getOverlays().add(oMapLocationOverlay);
