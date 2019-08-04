@@ -17,6 +17,7 @@ import com.example.sideproject2019.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.TileProvider;
 
 import org.osmdroid.config.Configuration;
 import org.osmdroid.events.DelayedMapListener;
@@ -130,9 +131,8 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
         MapView mapView = findViewById(R.id.map);
         mapView.setClickable(true);
         mapView.setBuiltInZoomControls(true);
-
+        mapView.setTileSource(TileSourceFactory.MAPNIK);
         mapView.getController().setZoom(15);
-        mapView.setTileSource(TileSourceFactory.CLOUDMADESTANDARDTILES);
 
        /* MyLocationNewOverlay oMapLocationOverlay = new MyLocationNewOverlay(getApplicationContext(), mapView);
         mapView.getOverlays().add(oMapLocationOverlay);
