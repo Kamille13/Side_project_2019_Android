@@ -45,8 +45,8 @@ public class SignInActivity extends AppCompatActivity {
                         .login(user, new Consumer<User>() {
                             @Override
                             public void accept(User user) {
-                                UserSingleton.getInstance().setUser(user);
                                 if (user != null) {
+                                    UserSingleton.getInstance().setUser(user);
                                     Intent intent = new Intent(SignInActivity.this,
                                             SignUpActivity.class);
                                     startActivity(intent);

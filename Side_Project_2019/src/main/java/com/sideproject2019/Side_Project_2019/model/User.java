@@ -36,13 +36,6 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(@NotNull @NotEmpty String firstName, @NotNull @NotEmpty String lastName, @NotNull @NotEmpty String email, @NotNull @NotEmpty String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
-
     public Long getId() {
         return id;
     }

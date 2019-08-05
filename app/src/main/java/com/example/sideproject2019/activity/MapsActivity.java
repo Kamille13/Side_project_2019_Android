@@ -17,7 +17,6 @@ import com.example.sideproject2019.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.TileProvider;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -29,14 +28,12 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
-import org.osmdroid.views.overlay.mylocation.IMyLocationProvider;
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 public class MapsActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    private static final int MULTIPLE_PERMISSION_REQUEST_CODE = 4;
     GoogleApiClient mGoogleApiClient;
     MapView mapView = null;
-    private static final int MULTIPLE_PERMISSION_REQUEST_CODE = 4;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,8 +89,7 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
 
             setupMap();
 
-        }
-        else {
+        } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{
                             Manifest.permission.INTERNET,
@@ -105,6 +101,7 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
                     MULTIPLE_PERMISSION_REQUEST_CODE);
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
