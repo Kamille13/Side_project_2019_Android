@@ -22,21 +22,21 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SingletonVolley {
+public class VolleySingleton {
 
-    private static final String URL = "http://10.0.3.2:8080/";
-    private static SingletonVolley instance;
+    private static final String URL = "http://10.0.2.2:8080/";
+    private static VolleySingleton instance;
     private static Context ctx;
     private RequestQueue requestQueue;
 
-    private SingletonVolley(Context context) {
+    private VolleySingleton(Context context) {
         ctx = context;
         requestQueue = getRequestQueue();
     }
 
-    public static synchronized SingletonVolley getInstance(Context context) {
+    public static synchronized VolleySingleton getInstance(Context context) {
         if (instance == null) {
-            instance = new SingletonVolley(context);
+            instance = new VolleySingleton(context);
         }
         return instance;
     }

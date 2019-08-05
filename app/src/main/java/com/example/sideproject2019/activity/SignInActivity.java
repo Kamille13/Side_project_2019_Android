@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.sideproject2019.R;
-import com.example.sideproject2019.SingletonVolley;
+import com.example.sideproject2019.VolleySingleton;
 import com.example.sideproject2019.UserSingleton;
 import com.example.sideproject2019.model.User;
 
@@ -41,7 +41,7 @@ public class SignInActivity extends AppCompatActivity {
                 user.setEmail(email);
                 user.setPassword(password);
 
-                SingletonVolley.getInstance(SignInActivity.this)
+                VolleySingleton.getInstance(SignInActivity.this)
                         .login(user, new Consumer<User>() {
                             @Override
                             public void accept(User user) {
