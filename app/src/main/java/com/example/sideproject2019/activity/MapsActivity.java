@@ -139,7 +139,7 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
 
 
         IMapController mapController = mapView.getController();
-        mapController.setZoom(16);
+        mapController.setZoom(20);
         GeoPoint startPoint = new GeoPoint(43.600000, 1.433333);
         mapController.setCenter(startPoint);
 
