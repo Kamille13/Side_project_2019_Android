@@ -47,7 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
                 user.setEmail(email);
                 user.setPassword(password);
 
-                VolleySingleton.getInstance(SignUpActivity.this).createUser(user, new Consumer<User>() {
+                VolleySingleton.getInstance(SignUpActivity.this).postUser(user, new Consumer<User>() {
                     @Override
                     public void accept(User user) {
                         UserSingleton.getInstance().setUser(user);

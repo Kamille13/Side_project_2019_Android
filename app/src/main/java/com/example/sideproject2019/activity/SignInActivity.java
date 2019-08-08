@@ -42,20 +42,14 @@ public class SignInActivity extends AppCompatActivity {
                 user.setPassword(password);
 
                 VolleySingleton.getInstance(SignInActivity.this)
-                        .login(user, new Consumer<User>() {
+                        .signIn(user, new Consumer<User>() {
                             @Override
                             public void accept(User user) {
+                                UserSingleton.getInstance().setUser(user);
                                 if (user != null) {
-                                    UserSingleton.getInstance().setUser(user);
                                     Intent intent = new Intent(SignInActivity.this,
-                                            SignUpActivity.class);
+                                            MapsActivity.class);
                                     startActivity(intent);
-                                }
-                                else{
-                                    new AlertDialog.Builder(SignInActivity.this)
-                                            .setTitle("Erreur")
-                                            .setMessage("Utilisateur Introuvable")
-                                            .show();
                                 }
                             }
 
