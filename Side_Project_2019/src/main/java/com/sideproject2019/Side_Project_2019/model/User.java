@@ -16,12 +16,8 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotEmpty
     private String firstName;
 
-    @NotNull
-    @NotEmpty
     private String lastName;
 
     @NotNull

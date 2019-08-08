@@ -3,7 +3,6 @@ package com.example.sideproject2019;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.support.v4.util.Consumer;
-import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,7 +24,7 @@ import java.util.Map;
 
 public class VolleySingleton {
 
-    private static final String URL = "http://10.0.2.2:8080/";
+    private static final String URL = "https://10.0.2.2:8080/";
 
     private static VolleySingleton instance;
     private static Context context;

@@ -30,22 +30,21 @@ public class SignUpActivity extends AppCompatActivity {
         btInscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String firstname = etFirstName.getText().toString();
-                String lastname = etLastName.getText().toString();
                 String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
-
-                if (email.isEmpty() || password.isEmpty() || firstname.isEmpty() || lastname.isEmpty()) {
+                String firstname = etFirstName.getText().toString();
+                String lastname = etLastName.getText().toString();
+                if (email.isEmpty() || password.isEmpty()) {
                     new AlertDialog.Builder(SignUpActivity.this)
                             .setTitle("Erreur")
-                            .setMessage("Veuillez renseigner vos informations")
+                            .setMessage("Veuillez renseigner votre email et mot de passe")
                             .show();
                 }
-                final User user = new User();
-                user.setFirstName(firstname);
-                user.setLastName(lastname);
+                User user = new User();
                 user.setEmail(email);
                 user.setPassword(password);
+                user.setFirstName(firstname);
+                user.setLastName(lastname);
 
                 VolleySingleton.getInstance(SignUpActivity.this).postUser(user, new Consumer<User>() {
                     @Override
