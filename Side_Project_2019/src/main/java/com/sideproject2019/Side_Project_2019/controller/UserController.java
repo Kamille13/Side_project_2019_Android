@@ -16,18 +16,18 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/users")
-    public List<User> getUser(){
-        return userRepository.findAll();
-    }
-
-    @PostMapping("/users")
-    public User postUser(@RequestBody User user) {
+    @PostMapping("/user/create")
+    public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
-    @PostMapping("/users/signIn")
-    public User signIn(@RequestBody User user) {
-        return userRepository.findByEmailAndPassword(user.getEmail(),user.getPassword());
+    @PostMapping("/user/login")
+    public User login(@RequestBody User user) {
+        return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+    }
+
+    @GetMapping("/users")
+    public List<User> getUser() {
+        return userRepository.findAll();
     }
 }

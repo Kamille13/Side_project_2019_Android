@@ -13,6 +13,10 @@ import com.example.sideproject2019.R;
 import com.example.sideproject2019.VolleySingleton;
 import com.example.sideproject2019.UserSingleton;
 import com.example.sideproject2019.model.User;
+import com.google.common.hash.Hashing;
+
+import java.nio.charset.Charset;
+
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -42,11 +46,12 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 User user = new User();
                 user.setEmail(email);
-                user.setPassword(password);
                 user.setFirstName(firstname);
                 user.setLastName(lastname);
 
-                VolleySingleton.getInstance(SignUpActivity.this).postUser(user, new Consumer<User>() {
+                String hashedPassword = Hashing.sha256().hashString(password, Charset.defaultCharset()).toString();
+                user.setPassword(hashedPassword);
+                VolleySingleton.getInstance(SignUpActivity.this).createAccount(user, new Consumer<User>() {
                     @Override
                     public void accept(User user) {
                         UserSingleton.getInstance().setUser(user);

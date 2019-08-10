@@ -14,6 +14,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.sideproject2019.R;
+import com.example.sideproject2019.UserSingleton;
+import com.example.sideproject2019.model.User;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -34,6 +36,8 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
     private static final int MULTIPLE_PERMISSION_REQUEST_CODE = 4;
     GoogleApiClient mGoogleApiClient;
     MapView mapView = null;
+    UserSingleton userSingleton = UserSingleton.getInstance();
+    User user = userSingleton.getUser();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
