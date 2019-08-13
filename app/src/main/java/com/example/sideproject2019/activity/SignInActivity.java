@@ -41,18 +41,19 @@ public class SignInActivity extends AppCompatActivity {
                 user.setEmail(email);
                 user.setPassword(password);
 
-                VolleySingleton.getInstance(SignInActivity.this).connexion(user, new Consumer<User>() {
-                    @Override
-                    public void accept(User user) {
-                        if (user != null) {
-                            UserSingleton.getInstance().setUser(user);
+                VolleySingleton.getInstance(SignInActivity.this)
+                        .signIn(user, new Consumer<User>() {
+                            @Override
+                            public void accept(User user) {
+                                UserSingleton.getInstance().setUser(user);
+                                if (user != null) {
                                     Intent intent = new Intent(SignInActivity.this,
                                             MapsActivity.class);
                                     startActivity(intent);
-                        }
-                    }
+                                }
+                            }
 
-                });
+                        });
             }
         });
         btSignUp.setOnClickListener(new View.OnClickListener() {

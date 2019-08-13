@@ -51,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 String hashedPassword = Hashing.sha256().hashString(password, Charset.defaultCharset()).toString();
                 user.setPassword(hashedPassword);
-                VolleySingleton.getInstance(SignUpActivity.this).createAccount(user, new Consumer<User>() {
+                VolleySingleton.getInstance(SignUpActivity.this).postUser(user, new Consumer<User>() {
                     @Override
                     public void accept(User user) {
                         UserSingleton.getInstance().setUser(user);
