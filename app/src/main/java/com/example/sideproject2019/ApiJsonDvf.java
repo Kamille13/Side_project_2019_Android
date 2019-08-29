@@ -8,7 +8,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.sideproject2019.model.Dvf;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
 
 public class ApiJsonDvf {
 
-    public static void extractAPI(Context context, final Location locationUser, Boolean dropoff, int zoom, final Dvf.DvfListener listener) {
+    public static void extractAPI(Context context, Boolean dropoff, int zoom, final Dvf.DvfListener listener) {
         String json = null;
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         String url = "http://api.cquest.org/dvf?code_postal=31000";

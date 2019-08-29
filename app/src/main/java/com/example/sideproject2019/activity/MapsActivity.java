@@ -11,10 +11,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.sideproject2019.R;
 import com.example.sideproject2019.UserSingleton;
+import com.example.sideproject2019.model.Dvf;
 import com.example.sideproject2019.model.User;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -31,6 +33,10 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
 
+import java.util.ArrayList;
+
+import static com.example.sideproject2019.ApiJsonDvf.extractAPI;
+
 public class MapsActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final int MULTIPLE_PERMISSION_REQUEST_CODE = 4;
@@ -38,10 +44,32 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
     MapView mapView = null;
     UserSingleton userSingleton = UserSingleton.getInstance();
     User user = userSingleton.getUser();
+    private static boolean dropOff = true;
+    private static int zoom = 15;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        extractAPI(MapsActivity.this, dropOff, zoom, new Dvf.DvfListener(){
+            @Override
+            public void onResult(ArrayList<Dvf> dvfs) {
+              /*  ListView listMenu = findViewById(R.id.lvEvents);
+                ListEventsAdapter adapter = new ListEventsAdapter(MapsActivity.this, dvfs);
+                listMenu.setAdapter(adapter);*/
+              for(int i = 0; i < dvfs.size(); i++){
+                  Dvf dvf = dvfs.get(i);
+                  long lat = dvf.getLat();
+                  long lon = dvf.getLon();
+                  String nombre_pieces_principales = dvf.getNombre_pieces_principales();
+                  String numero_plan = dvf.getNumero_plan();
+                  String surface_relle_bati = dvf.getSurface_relle_bati();
+                  String type_local = dvf.getType_local();
+                  String valeur_fonciere = dvf.getValeur_fonciere();
+
+              }
+            }
+        });
 
         Context ctx = getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
