@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sideproject2019.R;
@@ -51,22 +51,28 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        final TextView tvTest = findViewById(R.id.tvTest);
+
         extractAPI(MapsActivity.this, dropOff, zoom, new Dvf.DvfListener(){
             @Override
             public void onResult(ArrayList<Dvf> dvfs) {
-              /*  ListView listMenu = findViewById(R.id.lvEvents);
-                ListEventsAdapter adapter = new ListEventsAdapter(MapsActivity.this, dvfs);
-                listMenu.setAdapter(adapter);*/
               for(int i = 0; i < dvfs.size(); i++){
                   Dvf dvf = dvfs.get(i);
-                  long lat = dvf.getLat();
-                  long lon = dvf.getLon();
-                  String nombre_pieces_principales = dvf.getNombre_pieces_principales();
+                  Double lat = dvf.getLat();
+                  Double lon = dvf.getLon();
+                  Integer nombre_pieces_principales = dvf.getNombre_pieces_principales();
                   String numero_plan = dvf.getNumero_plan();
-                  String surface_relle_bati = dvf.getSurface_relle_bati();
+                  Integer surface_relle_bati = dvf.getSurface_relle_bati();
                   String type_local = dvf.getType_local();
-                  String valeur_fonciere = dvf.getValeur_fonciere();
+                  Integer valeur_fonciere = dvf.getValeur_fonciere();
 
+                  tvTest.setText(nombre_pieces_principales);
+                  tvTest.setText(String.valueOf(lat));
+                  tvTest.setText(String.valueOf(lon));
+                  tvTest.setText(String.valueOf(valeur_fonciere));
+                  tvTest.setText(numero_plan);
+                  tvTest.setText(surface_relle_bati);
+                  tvTest.setText(type_local);
               }
             }
         });

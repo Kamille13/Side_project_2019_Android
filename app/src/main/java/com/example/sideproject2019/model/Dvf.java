@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class Dvf {
 
-    private long  lat;
-    private long lon;
-    private String valeur_fonciere;
+    private Double  lat;
+    private Double lon;
+    private Integer valeur_fonciere;
     private String numero_plan;
     private String type_local;
-    private String surface_relle_bati;
-    private String nombre_pieces_principales;
+    private Integer surface_relle_bati;
+    private Integer nombre_pieces_principales;
 
     public Dvf() {
     }
 
-    public Dvf(long lat, long lon, String valeur_fonciere, String numero_plan, String type_local, String surface_relle_bati, String nombre_pieces_principales) {
+    public Dvf(Double lat, Double lon, Integer valeur_fonciere, String numero_plan,String type_local, Integer surface_relle_bati, Integer nombre_pieces_principales) {
         this.lat = lat;
         this.lon = lon;
         this.valeur_fonciere = valeur_fonciere;
@@ -25,27 +25,27 @@ public class Dvf {
         this.nombre_pieces_principales = nombre_pieces_principales;
     }
 
-    public long getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(long lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public long getLon() {
+    public Double getLon() {
         return lon;
     }
 
-    public void setLon(long lon) {
+    public void setLon(Double lon) {
         this.lon = lon;
     }
 
-    public String getValeur_fonciere() {
+    public Integer getValeur_fonciere() {
         return valeur_fonciere;
     }
 
-    public void setValeur_fonciere(String valeur_fonciere) {
+    public void setValeur_fonciere(Integer valeur_fonciere) {
         this.valeur_fonciere = valeur_fonciere;
     }
 
@@ -65,19 +65,19 @@ public class Dvf {
         this.type_local = type_local;
     }
 
-    public String getSurface_relle_bati() {
+    public Integer getSurface_relle_bati() {
         return surface_relle_bati;
     }
 
-    public void setSurface_relle_bati(String surface_relle_bati) {
+    public void setSurface_relle_bati(Integer surface_relle_bati) {
         this.surface_relle_bati = surface_relle_bati;
     }
 
-    public String getNombre_pieces_principales() {
+    public Integer getNombre_pieces_principales() {
         return nombre_pieces_principales;
     }
 
-    public void setNombre_pieces_principales(String nombre_pieces_principales) {
+    public void setNombre_pieces_principales(Integer nombre_pieces_principales) {
         this.nombre_pieces_principales = nombre_pieces_principales;
     }
 
