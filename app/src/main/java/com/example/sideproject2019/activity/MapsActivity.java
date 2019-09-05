@@ -66,13 +66,7 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
                   String type_local = dvf.getType_local();
                   Integer valeur_fonciere = dvf.getValeur_fonciere();
 
-                  tvTest.setText(nombre_pieces_principales);
-                  tvTest.setText(String.valueOf(lat));
-                  tvTest.setText(String.valueOf(lon));
-                  tvTest.setText(String.valueOf(valeur_fonciere));
-                  tvTest.setText(numero_plan);
-                  tvTest.setText(surface_relle_bati);
-                  tvTest.setText(type_local);
+                  Toast.makeText(MapsActivity.this, String.valueOf(lat)+ String.valueOf(lon)+nombre_pieces_principales+numero_plan+surface_relle_bati+type_local+valeur_fonciere, Toast.LENGTH_SHORT).show();
               }
             }
         });
