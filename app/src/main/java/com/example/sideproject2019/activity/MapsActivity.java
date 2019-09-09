@@ -51,22 +51,22 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final TextView tvTest = findViewById(R.id.tvTest);
-
         extractAPI(MapsActivity.this, dropOff, zoom, new Dvf.DvfListener(){
             @Override
             public void onResult(ArrayList<Dvf> dvfs) {
               for(int i = 0; i < dvfs.size(); i++){
-                  Dvf dvf = dvfs.get(i);
-                  Double lat = dvf.getLat();
-                  Double lon = dvf.getLon();
-                  Integer nombre_pieces_principales = dvf.getNombre_pieces_principales();
-                  String numero_plan = dvf.getNumero_plan();
-                  Integer surface_relle_bati = dvf.getSurface_relle_bati();
-                  String type_local = dvf.getType_local();
-                  Integer valeur_fonciere = dvf.getValeur_fonciere();
+                  TextView tvTest = findViewById(R.id.tvTest);
 
-                  Toast.makeText(MapsActivity.this, String.valueOf(lat)+ String.valueOf(lon)+nombre_pieces_principales+numero_plan+surface_relle_bati+type_local+valeur_fonciere, Toast.LENGTH_SHORT).show();
+                  Dvf dvf = new Dvf(dvfs.get(i).getLat(),dvfs.get(i).getLon(),dvfs.get(i).getValeur_fonciere(),dvfs.get(i).getNumero_plan(),dvfs.get(i).getType_local(),dvfs.get(i).getSurface_relle_bati(),dvfs.get(i).getNombre_pieces_principales());
+                  String lat = dvf.getLat();
+                  String lon = dvf.getLon();
+                  String nombre_pieces_principales = dvf.getNombre_pieces_principales();
+                  String numero_plan = dvf.getNumero_plan();
+                  String surface_relle_bati = dvf.getSurface_relle_bati();
+                  String type_local = dvf.getType_local();
+                  String valeur_fonciere = dvf.getValeur_fonciere();
+
+                  tvTest.setText(dvf.toString());
               }
             }
         });

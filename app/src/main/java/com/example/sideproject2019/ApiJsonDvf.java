@@ -34,36 +34,36 @@ public class ApiJsonDvf {
                             ArrayList<Dvf> dvfs = new ArrayList<>();
                             for (int i = 0; i < resultats.length(); i++) {
                                 JSONObject rec = (JSONObject) resultats.get(i);
-                                Double lat = 0.0;
+                                String lat = "";
                                 if (rec.has("lat")) {
-                                    lat = (Double) rec.get("lat");
+                                    lat =  rec.get("lat").toString();
                                 }
-                                Double lon = 0.0;
+                                String lon = "";
                                 if (rec.has("lon")) {
-                                    lon = (Double) rec.get("lon");
+                                    lon =  rec.get("lon").toString();
                                 }
-                                Integer valeur_fonciere = 0;
+                                String valeur_fonciere = "";
                                 if(rec.has("valeur_fonciere")){
-                                    valeur_fonciere = (Integer) rec.get("valeur_fonciere");
+                                    valeur_fonciere = rec.get("valeur_fonciere").toString();
                                 }
                                 String numero_plan = "";
                                 if(rec.has("numero_plan")){
-                                    numero_plan = (String) rec.get("numero_plan");
+                                    numero_plan = rec.get("numero_plan").toString();
                                 }
                                 String type_local = "";
                                 if(rec.has("type_local")){
-                                    type_local = (String) rec.get("type_local");
+                                    type_local =  rec.get("type_local").toString();
                                 }
-                                Integer surface_relle_bati = 0;
+                                String surface_relle_bati = "";
                                 if(rec.has("surface_relle_bati")){
-                                    surface_relle_bati = (Integer) rec.get("surface_relle_bati");
+                                    surface_relle_bati = rec.get("surface_relle_bati").toString();
                                 }
-                                Integer nombre_pieces_principales = 0;
+                                String nombre_pieces_principales = "";
                                 if(rec.has("nombre_pieces_principales")){
-                                    nombre_pieces_principales = (Integer) rec.get("nombre_pieces_principales");
+                                    nombre_pieces_principales = rec.get("nombre_pieces_principales").toString();
                                 }
 
-                                Dvf dvf = new Dvf(lat, lon, valeur_fonciere, numero_plan,type_local, surface_relle_bati, nombre_pieces_principales);
+                                Dvf dvf = new Dvf(lat, lon,valeur_fonciere, numero_plan,type_local,surface_relle_bati,nombre_pieces_principales);
                                 dvfs.add(dvf);
                             }
                             listener.onResult(dvfs);
