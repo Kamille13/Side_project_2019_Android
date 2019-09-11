@@ -37,6 +37,7 @@ import org.osmdroid.views.overlay.compass.CompassOverlay;
 import java.util.ArrayList;
 
 import static com.example.sideproject2019.ApiJsonDvf.extractAPI;
+import static com.example.sideproject2019.ApiJsonDvf.extractAPI2;
 
 public class MapsActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
@@ -53,6 +54,37 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
         super.onCreate(savedInstanceState);
 
         extractAPI(MapsActivity.this, dropOff, zoom, new Dvf.DvfListener(){
+            @Override
+            public void onResult(ArrayList<Dvf> dvfs) {
+              for(int i = 0; i < dvfs.size(); i++){
+                  MapView mapView = findViewById(R.id.map);
+
+                  Dvf dvf = new Dvf(dvfs.get(i).getLat(),dvfs.get(i).getLon(),dvfs.get(i).getValeur_fonciere(),dvfs.get(i).getNumero_plan(),dvfs.get(i).getType_local(),dvfs.get(i).getSurface_relle_bati(),dvfs.get(i).getNombre_pieces_principales());
+                  Double latitude = 0.0;
+                  if(dvf.getLat() != "null"){
+                      latitude = Double.valueOf(dvf.getLat());
+                  }
+                  Double longitude = 0.0;
+                  if(dvf.getLon() != "null"){
+                      longitude = Double.valueOf(dvf.getLon());
+                  }
+                  String nombre_pieces_principales = dvf.getNombre_pieces_principales();
+                  String numero_plan = dvf.getNumero_plan();
+                  String surface_relle_bati = dvf.getSurface_relle_bati();
+                  String type_local = dvf.getType_local();
+                  String valeur_fonciere = dvf.getValeur_fonciere();
+                  GeoPoint startPoint = new GeoPoint(latitude, longitude);
+                  Marker startMarker = new Marker(mapView);
+                  startMarker.setPosition(startPoint);
+                  startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                  startMarker.setTitle(type_local);
+                  startMarker.setSnippet("Nombres de piéces principales : " + nombre_pieces_principales + "        " + "Surface réelle habitable : " + surface_relle_bati + "         " + "Valeur fonciére : " + valeur_fonciere);
+                  mapView.getOverlays().add(startMarker);
+
+              }
+            }
+        });
+        extractAPI2(MapsActivity.this, dropOff, zoom, new Dvf.DvfListener(){
             @Override
             public void onResult(ArrayList<Dvf> dvfs) {
               for(int i = 0; i < dvfs.size(); i++){
