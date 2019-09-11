@@ -56,8 +56,9 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
             public void onResult(ArrayList<Dvf> dvfs) {
               for(int i = 0; i < dvfs.size(); i++){
                   TextView tvTest = findViewById(R.id.tvTest);
-
-                  Dvf dvf = new Dvf(dvfs.get(i).getLat(),dvfs.get(i).getLon(),dvfs.get(i).getValeur_fonciere(),dvfs.get(i).getNumero_plan(),dvfs.get(i).getType_local(),dvfs.get(i).getSurface_relle_bati(),dvfs.get(i).getNombre_pieces_principales());
+                  TextView tvTest2 = findViewById(R.id.tvTest2);
+                  TextView tvTest3 = findViewById(R.id.tvTest3);
+                  Dvf dvf = new Dvf(dvfs.get(i).getLat(),dvfs.get(i).getLon(),dvfs.get(i).getValeur_fonciere(),dvfs.get(i).getType_local(),dvfs.get(i).getNombre_pieces_principales(),dvfs.get(i).getNumero_plan(),dvfs.get(i).getSurface_relle_bati());
                   String lat = dvf.getLat();
                   String lon = dvf.getLon();
                   String nombre_pieces_principales = dvf.getNombre_pieces_principales();
@@ -66,7 +67,9 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
                   String type_local = dvf.getType_local();
                   String valeur_fonciere = dvf.getValeur_fonciere();
 
-                  tvTest.setText(dvf.toString());
+                  tvTest.setText(lat);
+                  tvTest2.setText(lon);
+                  tvTest3.setText(numero_plan);
               }
             }
         });

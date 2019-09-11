@@ -16,7 +16,7 @@ public class Dvf {
     public Dvf() {
     }
 
-    public Dvf(String lat, String lon,String valeur_fonciere, String numero_plan,String type_local,String surface_relle_bati,String nombre_pieces_principales) {
+    public Dvf(String lat, String lon, String valeur_fonciere, String numero_plan, String type_local, String surface_relle_bati, String nombre_pieces_principales) {
         this.lat = lat;
         this.lon = lon;
         this.valeur_fonciere = valeur_fonciere;

@@ -63,7 +63,7 @@ public class ApiJsonDvf {
                                     nombre_pieces_principales = rec.get("nombre_pieces_principales").toString();
                                 }
 
-                                Dvf dvf = new Dvf(lat, lon,valeur_fonciere, numero_plan,type_local,surface_relle_bati,nombre_pieces_principales);
+                                Dvf dvf = new Dvf(lat, lon, valeur_fonciere,numero_plan,type_local,surface_relle_bati,nombre_pieces_principales);
                                 dvfs.add(dvf);
                             }
                             listener.onResult(dvfs);
@@ -75,12 +75,10 @@ public class ApiJsonDvf {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Afficher l'erreur
                         Log.d("VOLLEY_ERROR", "onErrorResponse: " + error.getMessage());
                     }
                 }
         );
-        // On ajoute la requête à la file d'attente
         requestQueue.add(jsonObjectRequest);
     }
 }
