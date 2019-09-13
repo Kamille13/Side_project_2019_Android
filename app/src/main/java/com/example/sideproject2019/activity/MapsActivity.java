@@ -11,7 +11,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sideproject2019.R;
@@ -78,6 +77,7 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
                   startMarker.setPosition(startPoint);
                   startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                   startMarker.setTitle(type_local);
+
                   startMarker.setSnippet("Nombres de piéces principales : " + nombre_pieces_principales + "        " + "Surface réelle habitable : " + surface_relle_bati + "m²"+ "         " + "Valeur fonciére : " + valeur_fonciere + "€");
                   mapView.getOverlays().add(startMarker);
 
@@ -111,7 +111,6 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
                   startMarker.setTitle(type_local);
                   startMarker.setSnippet("Nombres de piéces principales : " + nombre_pieces_principales + "        " + "Surface réelle habitable : " + surface_relle_bati + "         " + "Valeur fonciére : " + valeur_fonciere);
                   mapView.getOverlays().add(startMarker);
-
               }
             }
         });
