@@ -6,4 +6,7 @@
     <string name="s_inscrire">S\'inscrire</string>
     <string name="pr_nom">prénom</string>
     <string name="nom">nom</string>
+    <string name="submit">Submit</string>
+    <string name="adress">Adress :</string>
+    <string name="search_adress">Search Adress</string>
 </resources>

@@ -3,14 +3,22 @@ package com.example.sideproject2019.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.sideproject2019.R;
@@ -20,6 +28,7 @@ import com.example.sideproject2019.model.User;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -47,6 +56,8 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
     User user = userSingleton.getUser();
     private static boolean dropOff = true;
     private static int zoom = 15;
+    Button btSearch;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +85,7 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
                   String valeur_fonciere = dvf.getValeur_fonciere();
                   GeoPoint startPoint = new GeoPoint(latitude, longitude);
                   Marker startMarker = new Marker(mapView);
+                  startMarker.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.house_marker, null));
                   startMarker.setPosition(startPoint);
                   startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                   startMarker.setTitle(type_local);
@@ -107,6 +119,8 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
                   GeoPoint startPoint = new GeoPoint(latitude, longitude);
                   Marker startMarker = new Marker(mapView);
                   startMarker.setPosition(startPoint);
+                  startMarker.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.house_marker, null));
+
                   startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                   startMarker.setTitle(type_local);
                   startMarker.setSnippet("Nombres de piéces principales : " + nombre_pieces_principales + "        " + "Surface réelle habitable : " + surface_relle_bati + "         " + "Valeur fonciére : " + valeur_fonciere);
@@ -135,6 +149,14 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
         }
 
         checkPermissionsState();
+        btSearch = findViewById(R.id.btSearchAdress);
+        btSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     void checkPermissionsState() {
