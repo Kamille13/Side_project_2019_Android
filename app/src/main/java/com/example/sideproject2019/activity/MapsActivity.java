@@ -5,17 +5,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +24,6 @@ import com.example.sideproject2019.model.User;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -50,12 +45,12 @@ import static com.example.sideproject2019.ApiJsonDvf.extractAPI2;
 public class MapsActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final int MULTIPLE_PERMISSION_REQUEST_CODE = 4;
+    private static boolean dropOff = true;
+    private static int zoom = 15;
     GoogleApiClient mGoogleApiClient;
     MapView mapView = null;
     UserSingleton userSingleton = UserSingleton.getInstance();
     User user = userSingleton.getUser();
-    private static boolean dropOff = true;
-    private static int zoom = 15;
     Button btSearch;
 
 
@@ -63,69 +58,69 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        extractAPI(MapsActivity.this, dropOff, zoom, new Dvf.DvfListener(){
+        extractAPI(MapsActivity.this, dropOff, zoom, new Dvf.DvfListener() {
             @Override
             public void onResult(ArrayList<Dvf> dvfs) {
-              for(int i = 0; i < dvfs.size(); i++){
-                  MapView mapView = findViewById(R.id.map);
+                for (int i = 0; i < dvfs.size(); i++) {
+                    MapView mapView = findViewById(R.id.map);
 
-                  Dvf dvf = new Dvf(dvfs.get(i).getLat(),dvfs.get(i).getLon(),dvfs.get(i).getValeur_fonciere(),dvfs.get(i).getNumero_plan(),dvfs.get(i).getType_local(),dvfs.get(i).getSurface_relle_bati(),dvfs.get(i).getNombre_pieces_principales());
-                  Double latitude = 0.0;
-                  if(dvf.getLat() != "null"){
-                      latitude = Double.valueOf(dvf.getLat());
-                  }
-                  Double longitude = 0.0;
-                  if(dvf.getLon() != "null"){
-                      longitude = Double.valueOf(dvf.getLon());
-                  }
-                  String nombre_pieces_principales = dvf.getNombre_pieces_principales();
-                  String numero_plan = dvf.getNumero_plan();
-                  String surface_relle_bati = dvf.getSurface_relle_bati();
-                  String type_local = dvf.getType_local();
-                  String valeur_fonciere = dvf.getValeur_fonciere();
-                  GeoPoint startPoint = new GeoPoint(latitude, longitude);
-                  Marker startMarker = new Marker(mapView);
-                  startMarker.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.house_marker, null));
-                  startMarker.setPosition(startPoint);
-                  startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                  startMarker.setTitle(type_local);
+                    Dvf dvf = new Dvf(dvfs.get(i).getLat(), dvfs.get(i).getLon(), dvfs.get(i).getValeur_fonciere(), dvfs.get(i).getNumero_plan(), dvfs.get(i).getType_local(), dvfs.get(i).getSurface_relle_bati(), dvfs.get(i).getNombre_pieces_principales());
+                    Double latitude = 0.0;
+                    if (dvf.getLat() != "null") {
+                        latitude = Double.valueOf(dvf.getLat());
+                    }
+                    Double longitude = 0.0;
+                    if (dvf.getLon() != "null") {
+                        longitude = Double.valueOf(dvf.getLon());
+                    }
+                    String nombre_pieces_principales = dvf.getNombre_pieces_principales();
+                    String numero_plan = dvf.getNumero_plan();
+                    String surface_relle_bati = dvf.getSurface_relle_bati();
+                    String type_local = dvf.getType_local();
+                    String valeur_fonciere = dvf.getValeur_fonciere();
+                    GeoPoint startPoint = new GeoPoint(latitude, longitude);
+                    Marker startMarker = new Marker(mapView);
+                    startMarker.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.house_marker, null));
+                    startMarker.setPosition(startPoint);
+                    startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                    startMarker.setTitle(type_local);
 
-                  startMarker.setSnippet("Nombres de piéces principales : " + nombre_pieces_principales + "        " + "Surface réelle habitable : " + surface_relle_bati + "m²"+ "         " + "Valeur fonciére : " + valeur_fonciere + "€");
-                  mapView.getOverlays().add(startMarker);
+                    startMarker.setSnippet("Nombres de piéces principales : " + nombre_pieces_principales + "        " + "Surface réelle habitable : " + surface_relle_bati + "m²" + "         " + "Valeur fonciére : " + valeur_fonciere + "€");
+                    mapView.getOverlays().add(startMarker);
 
-              }
+                }
             }
         });
-        extractAPI2(MapsActivity.this, dropOff, zoom, new Dvf.DvfListener(){
+        extractAPI2(MapsActivity.this, dropOff, zoom, new Dvf.DvfListener() {
             @Override
             public void onResult(ArrayList<Dvf> dvfs) {
-              for(int i = 0; i < dvfs.size(); i++){
-                  MapView mapView = findViewById(R.id.map);
+                for (int i = 0; i < dvfs.size(); i++) {
+                    MapView mapView = findViewById(R.id.map);
 
-                  Dvf dvf = new Dvf(dvfs.get(i).getLat(),dvfs.get(i).getLon(),dvfs.get(i).getValeur_fonciere(),dvfs.get(i).getNumero_plan(),dvfs.get(i).getType_local(),dvfs.get(i).getSurface_relle_bati(),dvfs.get(i).getNombre_pieces_principales());
-                  Double latitude = 0.0;
-                  if(dvf.getLat() != "null"){
-                      latitude = Double.valueOf(dvf.getLat());
-                  }
-                  Double longitude = 0.0;
-                  if(dvf.getLon() != "null"){
-                      longitude = Double.valueOf(dvf.getLon());
-                  }
-                  String nombre_pieces_principales = dvf.getNombre_pieces_principales();
-                  String numero_plan = dvf.getNumero_plan();
-                  String surface_relle_bati = dvf.getSurface_relle_bati();
-                  String type_local = dvf.getType_local();
-                  String valeur_fonciere = dvf.getValeur_fonciere();
-                  GeoPoint startPoint = new GeoPoint(latitude, longitude);
-                  Marker startMarker = new Marker(mapView);
-                  startMarker.setPosition(startPoint);
-                  startMarker.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.house_marker, null));
+                    Dvf dvf = new Dvf(dvfs.get(i).getLat(), dvfs.get(i).getLon(), dvfs.get(i).getValeur_fonciere(), dvfs.get(i).getNumero_plan(), dvfs.get(i).getType_local(), dvfs.get(i).getSurface_relle_bati(), dvfs.get(i).getNombre_pieces_principales());
+                    Double latitude = 0.0;
+                    if (dvf.getLat() != "null") {
+                        latitude = Double.valueOf(dvf.getLat());
+                    }
+                    Double longitude = 0.0;
+                    if (dvf.getLon() != "null") {
+                        longitude = Double.valueOf(dvf.getLon());
+                    }
+                    String nombre_pieces_principales = dvf.getNombre_pieces_principales();
+                    String numero_plan = dvf.getNumero_plan();
+                    String surface_relle_bati = dvf.getSurface_relle_bati();
+                    String type_local = dvf.getType_local();
+                    String valeur_fonciere = dvf.getValeur_fonciere();
+                    GeoPoint startPoint = new GeoPoint(latitude, longitude);
+                    Marker startMarker = new Marker(mapView);
+                    startMarker.setPosition(startPoint);
+                    startMarker.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.house_marker, null));
 
-                  startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                  startMarker.setTitle(type_local);
-                  startMarker.setSnippet("Nombres de piéces principales : " + nombre_pieces_principales + "        " + "Surface réelle habitable : " + surface_relle_bati + "         " + "Valeur fonciére : " + valeur_fonciere);
-                  mapView.getOverlays().add(startMarker);
-              }
+                    startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                    startMarker.setTitle(type_local);
+                    startMarker.setSnippet("Nombres de piéces principales : " + nombre_pieces_principales + "        " + "Surface réelle habitable : " + surface_relle_bati + "         " + "Valeur fonciére : " + valeur_fonciere);
+                    mapView.getOverlays().add(startMarker);
+                }
             }
         });
 
