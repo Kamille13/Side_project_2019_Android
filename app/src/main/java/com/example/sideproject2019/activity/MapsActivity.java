@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.sideproject2019.PosSingleton;
 import com.example.sideproject2019.R;
 import com.example.sideproject2019.UserSingleton;
 import com.example.sideproject2019.model.Dvf;
@@ -52,6 +53,7 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
     UserSingleton userSingleton = UserSingleton.getInstance();
     User user = userSingleton.getUser();
     Button btSearch;
+    PosSingleton posSingleton = PosSingleton.getInstance();
 
 
     @Override
@@ -229,8 +231,11 @@ public class MapsActivity extends Activity implements GoogleApiClient.Connection
 
 
         IMapController mapController = mapView.getController();
-        mapController.setZoom(20);
-        GeoPoint startPoint = new GeoPoint(43.600000, 1.433333);
+        mapController.setZoom(18);
+        GeoPoint startPoint = new GeoPoint(43.604300, 1.443700);
+        if(posSingleton.getPosition() != null){
+            startPoint = new GeoPoint(posSingleton.getPosition().getLat(),posSingleton.getPosition().getLon());
+        }
         mapController.setCenter(startPoint);
 
         CompassOverlay compassOverlay = new CompassOverlay(this, mapView);
